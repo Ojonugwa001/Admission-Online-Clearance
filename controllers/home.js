@@ -55,7 +55,8 @@ module.exports = function(app) {
 	});
 
 	app.post('/', function (req, res, next) {
-		console.log(req.params.data);
+		// console.log(req.params.data);
+		console.log('body: ' + JSON.stringify(req.body));
 
 		return res.redirect('/');
 	});

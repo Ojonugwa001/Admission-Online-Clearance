@@ -142,7 +142,7 @@
                                                                 </td>
 
                                                                 <td>
-                                                                    <button type="button" class="btn btn-success waves-effect waves-light btn-sm"><i class=" fi-check"></i></button>
+                                                                    <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="btn-success"><i class=" fi-check"></i></button>
                                                                 </td>
 
                                                                 <td>
@@ -197,11 +197,5 @@
 
                 </div> <!-- content -->
 
-                <script>
-				    $('.btn-success').click(function () {
-				        $.post('/:data', {data: 'approved'}, function (data) {
-				        console.log(data);
-				      });
-				    }, 'json');
-				</script>
+				
 <% include ./partials/footer %>
