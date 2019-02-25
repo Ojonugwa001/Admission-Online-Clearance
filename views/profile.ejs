@@ -1,0 +1,162 @@
+            <% include ./partials/header %>
+
+            <% include ./partials/sidebar-nav %>
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+
+                <!-- Top Bar Start -->
+                <div class="topbar">
+
+                    <nav class="navbar-custom">
+
+                        <ul class="list-inline menu-left mb-0">
+                            <li class="float-left">
+                                <button class="button-menu-mobile open-left disable-btn">
+                                    <i class="dripicons-menu"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Profile </h4>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Profile</a></li>
+                                    </ol>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+                <!-- Top Bar End -->
+
+
+
+                <!-- Start Page content -->
+                <div class="content">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-box">
+                                    <h1>Profile</h1>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="p-20">
+                                                <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="/profile">
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">FirstName</label>
+                                                        <div class="col-10">
+                                                            <input type="text" class="form-control" name="firstname" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">LastName (Surname)</label>
+                                                        <div class="col-10">
+                                                            <input type="text" class="form-control" name="lastname" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Department</label>
+                                                        <div class="col-10">
+                                                            <input type="text" class="form-control" name="dept" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label" >Gender</label>
+                                                        <div class="col-10" >
+                                                            <select class="form-control"  name="gender">
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Date of Birth</label>
+                                                        <div class="col-10">
+                                                            <input class="form-control" type="date" name="date" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Phone Number</label>
+                                                        <div class="col-md-10">
+                                                            <input class="form-control" type="tel" name="tel" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Address</label>
+                                                        <div class="col-10">
+                                                            <textarea class="form-control" rows="5" type="text" name="address" required></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <h1>Documents</h1>
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">O'Level (First sitting)</label>
+                                                        <div class="col-10">
+                                                            <input type="file" class="form-control" name="fileUpload" accept="image/*" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">O'Level (Second sitting)</label>
+                                                        <div class="col-10">
+                                                            <input type="file" class="form-control" name="fileUpload1" accept="image/*">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Birth Certificate</label>
+                                                        <div class="col-10">
+                                                            <input type="file" class="form-control" name="fileUpload2" accept="image/*" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Certificate of Origin</label>
+                                                        <div class="col-10">
+                                                            <input type="file" class="form-control" name="fileUpload3" accept="image/*" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Medical Certificate</label>
+                                                        <div class="col-10">
+                                                            <input type="file" class="form-control" name="fileUpload4" accept="image/*" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="submit" value="submit" class="btn btn-primary btn-rounded waves-light waves-effect float-right" id="sa-success">Submit</button>
+
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- end row -->
+
+                                </div> <!-- end card-box -->
+                            </div><!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <% include ./partials/footer %>
