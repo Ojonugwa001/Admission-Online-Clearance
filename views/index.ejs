@@ -62,29 +62,42 @@
                                                                 <div class="col-md-6 col-xl-3">
                                                                     <div class="card-box widget-flat border-custom bg-custom text-white">
                                                                         <i class="fi-layers"></i>
-                                                                        <% var totalStudents = 1; profileData.forEach(function(item, index){ totalStudents += index }); %>
-                                                                        <h3 class="m-b-10">2</h3>
+                                                                        <% var totalUploads = 0, totalApproved = 0, totalDisapproved = 0,
+                                                                        totalPending = 0;
+
+                                                                         profileData.forEach(function(item, index){ 
+
+                                                                         totalUploads += index;
+
+                                                                          if(item.status === "approved"){totalApproved += 1}
+
+                                                                          if(item.status === "disapproved"){totalDisapproved += 1}
+
+                                                                          if(item.status === "pending"){totalPending += 1}
+                                                                         
+                                                                         }); %>
+                                                                        <h3 class="m-b-10"><%= totalUploads %></h3>
                                                                         <p class="text-uppercase m-b-5 font-13 font-600">Total Uploads</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-xl-3">
                                                                     <div class="card-box bg-primary widget-flat border-primary text-white">
                                                                         <i class="fi-archive"></i>
-                                                                        <h3 class="m-b-10">1</h3>
+                                                                        <h3 class="m-b-10">NaN</h3>
                                                                         <p class="text-uppercase m-b-5 font-13 font-600">Pending</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-xl-3">
                                                                     <div class="card-box widget-flat border-success bg-success text-white">
                                                                         <i class="fi-check"></i>
-                                                                        <h3 class="m-b-10">1</h3>
+                                                                        <h3 class="m-b-10">NaN</h3>
                                                                         <p class="text-uppercase m-b-5 font-13 font-600">Approved</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-xl-3">
                                                                     <div class="card-box bg-danger widget-flat border-danger text-white">
                                                                         <i class="fi-delete"></i>
-                                                                        <h3 class="m-b-10">0</h3>
+                                                                        <h3 class="m-b-10">NaN</h3>
                                                                         <p class="text-uppercase m-b-5 font-13 font-600">Disapproved</p>
                                                                     </div>
                                                                 </div>
@@ -124,19 +137,28 @@
                                                                         <span class="ml-2"><%= item.department %></span>
                                                                     </a>
                                                                 </td>
-                                                                <% if (item.approved === 'pending'){ %>
+                                                                <% if (item.approved === 'approved'){ %>
                                                                 <td>
-                                                                    <span class="badge badge-secondary">Pending</span>
-                                                                </td>
-                                                                <% } else if (item.approved === 'approved'){ %>
-                                                                 <td>
                                                                     <span class="badge badge-success">Approved</span>
                                                                 </td>
-                                                                <% } else { %>
+
+                                                                <td>
+                                                                     <button type="button" class="btn btn-secondary waves-effect waves-light btn-sm"><i class=" fi-clipboard"></i></button>
+                                                                </td>
+
+                                                                <td>
+                                                                    <button type="button" disabled id="<%= item.userId %>" onclick="approve(this.id)" class="btn btn-success waves-effect waves-light btn-sm" id="btn-success"><i class=" fi-check"></i></button>
+                                                                </td>
+
+                                                                <td>
+                                                                    <button type="button" disabled id="disapproved" class="btn btn-danger waves-effect waves-light btn-sm"><i class=" fi-cross"></i></button>
+                                                                </td>
+
+                                                                <% } else if (item.approved === 'disapproved'){ %>
+
                                                                  <td>
-                                                                    <span class="badge badge-danger">Disapproved</span>
-                                                                </td> 
-                                                                <% } %>
+                                                                    <span class="badge badge-danger"">Disapproved</span>
+                                                                </td>
 
                                                                 <td>
                                                                      <button type="button" class="btn btn-secondary waves-effect waves-light btn-sm"><i class=" fi-clipboard"></i></button>
@@ -147,8 +169,29 @@
                                                                 </td>
 
                                                                 <td>
-                                                                    <button type="button" id="disapproved" class="btn btn-danger waves-effect waves-light btn-sm"><i class=" fi-cross"></i></button>
+                                                                    <button type="button" disabled id="disapproved" class="btn btn-danger waves-effect waves-light btn-sm"><i class=" fi-cross"></i></button>
                                                                 </td>
+
+                                                                <% } else { %>
+
+                                                                <td>
+                                                                    <span class="badge badge-secondary">Pending</span>
+                                                                </td>
+
+                                                                <td>
+                                                                     <button type="button" class="btn btn-secondary waves-effect waves-light btn-sm"><i class=" fi-clipboard"></i></button>
+                                                                </td>
+
+                                                                <td>
+                                                                    <button type="button" id="<%= item.userId %>" onclick="approve(this.id)" class="btn btn-success waves-effect waves-light btn-sm" id="btn-success"><i class=" fi-check"></i></button>
+                                                                </td>
+
+                                                                <td>
+                                                                    <button type="button" id="<%= item.userId %>" onclick="disapprove(this.id)" id="disapproved" class="btn btn-danger waves-effect waves-light btn-sm"><i class=" fi-cross"></i></button>
+                                                                </td>
+
+                                                                <% } %>
+
                                                             </tr>
                                                             <% }); %>
 
@@ -163,7 +206,23 @@
 
                                     </div> <!-- content -->
 
-                                    <% } else { if (profileUpdated) { %>
+                                    <% } else { if (profileUpdated && status === "approved") { %>
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                                            <h1>You can now proceed to print your Screening Certificate</h1>
+                                            <span class="badge badge-success">Approved</span>
+                                        </div>
+                                    </div>
+                               		} else if (profileUpdated && status === "disapproved") { %>
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                                            <h1>Your screening has been disapproved, go the Academic office</h1>
+                                            <span class="badge badge-success">Approved</span>
+                                        </div>
+                                    </div>
+                                    <% } else if (profileUpdated) { %>
                                     
                                     <div class="row">
                                         <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -193,10 +252,5 @@
                             </div>
                         </div>
                         <!-- end row -->
-
-                    </div> <!-- container -->
-
-                </div> <!-- content -->
-
 				
 <% include ./partials/footer %>

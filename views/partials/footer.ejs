@@ -51,7 +51,7 @@
                        // alert(userId);
                        var data = {};
                        data.Id = userId;
-                       data.message = "approved";
+                       data.status = "approved";
 
                        $.ajax({
                              type: 'POST',
@@ -60,10 +60,33 @@
                               url: 'http://localhost:8080/',                      
                               success: function(data) {
                                   console.log('success');
+                                  location.reload();
+                                  alert('Student Approved')
                                   // console.log(JSON.stringify(data));
                                }
                          });
-                    }    
+                    }   
+
+                    function disapprove(id) {
+                       var userId = id;
+                       // alert(userId);
+                       var data = {};
+                       data.Id = userId;
+                       data.status = "disapproved";
+
+                       $.ajax({
+                             type: 'POST',
+                             data: JSON.stringify(data),
+                              contentType: 'application/json',
+                              url: 'http://localhost:8080/',                      
+                              success: function(data) {
+                                  console.log('success');
+                                  location.reload();
+                                  alert('Student Disapproved')
+                                  // console.log(JSON.stringify(data));
+                               }
+                         });
+                    } 
                 </script>
 
 
