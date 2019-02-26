@@ -24,7 +24,7 @@ module.exports = function(app) {
 	          		Profile.authenticate(req.session.userId, function (error, profileUserId) {
 	          			var email = req.session.userEmail;
 	      				if (error || !profileUserId) {
-	      					Profile.find({},'firstname lastname department approved', function(err, profileData){
+	      					Profile.find({},'userId firstname lastname department approved', function(err, profileData){
 	        					if (err) {
 	        						console.log("profileData could not be fetched");
 	        						return next();
@@ -56,7 +56,23 @@ module.exports = function(app) {
 
 	app.post('/', function (req, res, next) {
 		// console.log(req.params.data);
-		console.log('body: ' + JSON.stringify(req.body));
+		console.log(JSON.stringify(req.body.id));
+
+		// Profile.findOne({ userId: req.session.userId })
+	 //    .exec(function (err, user) {
+	 //      if (err) {
+	 //        return callback(err)
+	 //      } else if (!user) {
+	 //        var err = new Error('User not found.');
+	 //        err.status = 401;
+	 //        return callback(err);
+	 //      }
+	 //      var name = user.lastname + " " + user.firstname;
+	 //      return res.render('index', {profileUpdated: true, email: email, user: name});
+	     
+	 //    });
+
+		// var approvalData = {};
 
 		return res.redirect('/');
 	});

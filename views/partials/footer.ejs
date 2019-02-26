@@ -44,5 +44,28 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
+
+        <script type="text/javascript">
+                    function approve(id) {
+                       var userId = id;
+                       // alert(userId);
+                       var data = {};
+                       data.Id = userId;
+                       data.message = "approved";
+
+                       $.ajax({
+                             type: 'POST',
+                             data: JSON.stringify(data),
+                              contentType: 'application/json',
+                              url: 'http://localhost:8080/',                      
+                              success: function(data) {
+                                  console.log('success');
+                                  // console.log(JSON.stringify(data));
+                               }
+                         });
+                    }    
+                </script>
+
+
     </body>
 </html>

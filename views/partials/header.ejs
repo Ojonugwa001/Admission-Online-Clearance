@@ -29,31 +29,7 @@
         <!-- <script src="assets/js/modernizr.min.js"></script> -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
         <script src="assets/js/jquery.min.js"></script>
-        <script type="text/javascript">
-                    $(function(){               
-                        $('#btn-success').click(function(e){
-                            e.preventDefault();
-                            console.log('select_link clicked');
-
-                            var data = {};
-                            // data.title = "title";
-                            data.message = "approved";
-                            
-                            $.ajax({
-                                type: 'POST',
-                                data: JSON.stringify(data),
-                                contentType: 'application/json',
-                                url: 'http://localhost:8080/',                      
-                                success: function(data) {
-                                    console.log('success');
-                                    // console.log(JSON.stringify(data));
-                                }
-                            });
-
-                        });             
-                    });
-                </script>
-
+        
     </head>
 
 
